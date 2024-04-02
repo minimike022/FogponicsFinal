@@ -77,13 +77,81 @@
             </div>
             <div class="w-full flex justify-center mt-16">
                 <!-- Contents -->
+                <!--Automatic-->
                 <div class="flex w-[60%] h-[40em] justify-between">
-                    <div onclick = "automatic()" class="w-[45%] h-[40em] bg-white flex justify-center rounded-xl transform transition duration-300 hover:scale-110">
-                        <span class="mt-4">
+                    <div class="w-[45%] h-[40em] bg-white flex justify-center rounded-xl transform transition duration-300 hover:scale-110">
+                        <div class="mt-4 w-full flex flex-col items-center">
                             <h1 class="text-2xl font-semibold">Automatic</h1>
-                        </span>
+                            <form action="{{route('automaticMode')}}" method="POST" class="flex justify-start w-full flex-col">
+                                @csrf
+                                <!--Light Intensity-->
+                                <div class="flex flex-col w-full mt-5">
+                                    <div class="flex items-center ml-5">
+                                        <img src="{{asset('Images/FogponicsIcons/light.png')}}" alt="">
+                                        <h1 class="font-semibold mx-4">Light Intensity</h1>
+                                    </div>
+                                   <!--Light Intensity Forms-->
+                                    <div class="flex justify-evenly w-full mt-4">
+                                        <!-- Minimum Value-->
+                                        <span class="flex flex-col items-center">
+                                            <input type="text" name="light-intensity-minValue" class="outline-blue-300 border-2 text-center rounded-lg h-[2.5em] w-[8em]">
+                                            <label for="light-intensity-minValue">min value</label>
+                                        </span>
+                                        <!-- Maximum Value -->
+                                        <span class="flex flex-col items-center">
+                                            <input type="text" name="light-intensity-maxValue" class="outline-blue-300 text-center border-2 rounded-lg h-[2.5em]  w-[8em]">
+                                            <label for="light-intensity-minValue">max value</label>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- Humidity -->
+                                <div class="flex flex-col w-full mt-5">
+                                    <div class="flex items-center ml-5">
+                                        <img src="{{asset('Images/FogponicsIcons/humidity.png')}}" alt="">
+                                        <h1 class="font-semibold mx-4">Humidity</h1>
+                                    </div>
+                                    <!-- Humidity Forms -->
+                                    <div class="flex justify-evenly w-full mt-4">
+                                        <!-- Minimum Value -->
+                                        <span class="flex flex-col items-center">
+                                            <input type="text" name="humidity-minValue" class="outline-blue-300 border-2 text-center rounded-lg h-[2.5em] w-[8em]">
+                                            <label for="humidity-minValue">min value</label>
+                                        </span>
+                                        <!-- Maximum Value -->
+                                        <span class="flex flex-col items-center">
+                                            <input type="text" name="humidity-maxValue" class="outline-blue-300 text-center border-2 rounded-lg h-[2.5em]  w-[8em]">
+                                            <label for="humidity-minValue">max value</label>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- Water Temperature -->
+                                <div class="flex flex-col w-full mt-5">
+                                    <div class="flex items-center ml-5">
+                                        <img src="{{asset('Images/FogponicsIcons/water-temperature.png')}}" alt="">
+                                        <h1 class="font-semibold mx-4">Water Temperature</h1>
+                                    </div>
+                                    <!-- Water Temperature Forms -->
+                                    <div class="flex justify-evenly w-full mt-4">
+                                        <!-- Minimum Value -->
+                                        <span class="flex flex-col items-center">
+                                            <input type="text" name="water-temperature-minValue" class="outline-blue-300 border-2 text-center rounded-lg h-[2.5em] w-[8em]">
+                                            <label for="water-temperature-minValue">min value</label>
+                                        </span>
+                                        <!-- Maximum Value -->
+                                        <span class="flex flex-col items-center">
+                                            <input type="text" name="water-temperature-maxValue" class="outline-blue-300 text-center border-2 rounded-lg h-[2.5em]  w-[8em]">
+                                            <label for="water-temperature-maxValue">max value</label>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-center">
+                                    <input type="submit" class="text-xl font-semibold text-white mt-10 bg-green-400 rounded-lg h-[5dvh] w-[40dvh]">
+                                </div>
+                            </form>
+
+                        </div>
                     </div>
-                    <div onclick="scheduled()" class="w-[45%] h-[40em] bg-white flex justify-center rounded-xl transform transition duration-300 hover:scale-110">
+                    <div class="w-[45%] h-[40em] bg-white flex justify-center rounded-xl transform transition duration-300 hover:scale-110">
                         <span class="mt-4">
                             <h1 class="text-2xl font-semibold">Scheduled</h1>
                         </span>
@@ -106,19 +174,5 @@
         } else {
             sidebarMenu.style.display = "none"
         }
-    }
-
-    const scheduled = () => {
-        automaticSetter = 0;
-        scheduledSetter = 1;
-        console.log("automatic = " + automaticSetter)
-        console.log("Scheduled = " + scheduledSetter)
-    }
-
-    const automatic = () => {
-        automaticSetter = 1;
-        scheduledSetter = 0;
-        console.log("automatic = " + automaticSetter)
-        console.log("Scheduled = " + scheduledSetter)
     }
 </script>

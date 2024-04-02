@@ -40,4 +40,17 @@ class CoreController extends Controller
         }
         
     }
+
+    public function automaticMode(Request $request) {
+        $validatedData = $request->validate([
+            'light-intensity-minValue'=> ['required'],
+            'light-intensity-maxValue'=> ['required'],
+            'humidity-minValue'=> ['required'],
+            'humidity-maxValue'=> ['required'],
+            'water-temperature-minValue'=> ['required'],
+            'water-temperature-maxValue'=> ['required'],
+        ]);
+
+        dd($validatedData);
+    }
 }

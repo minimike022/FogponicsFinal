@@ -27,6 +27,7 @@ Route::middleware('isUser')->group(function () {
     Route::get('/dashboard', [Navigation::class, "dashboard"])->name('dashboard');
     Route::get('/equipments', [Navigation::class, "equipments"])->name('equipments');
     Route::get('/controller', [Navigation::class, "controller"])->name('controller');
+    Route::post('/controller/automaticMode', [CoreController::class, 'automaticMode'])->name('automaticMode');
     Route::get('/changePass', [Navigation::class, "changepassword"])->name('changePass');
     Route::post('/logout', [Navigation::class, "logout"])->name('logout');
 });

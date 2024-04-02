@@ -6,56 +6,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="bg-gray-200 font-Poppins">
     <div class="flex">
         <!-- Navigation Sidebar-->
         <div id="sidebarNav">
-            <div class="w-[24em] h-full relative bg-white flex justify-center left-0">
-                <div class="h-[22em] flex flex-col justify-between fixed mt-24">
+            <div class="w-[20em] h-full relative bg-white flex justify-center left-0">
+                <div class="h-[22em] flex flex-col justify-between fixed mt-14">
                     <div class="flex justify-center">
-                        <img src="{{asset('Images/clsuLogo.jpg')}}" alt="" class="h-[7em] w-[7em]">
+                        <img src="{{asset('Images/clsuLogo.jpg')}}" alt="" class="h-[5em] w-[5em]">
                     </div>
-                    <div class=" mt-5 flex justify-center items-center flex-col">
-                        <h1 class="text-xl">Fogponics Controller</h1>
-                        <h1 class="text-xl">(Web Based)</h1>
+                    <div class="text-lg font-semibold mt-5 flex justify-center items-center flex-col">
+                        <h1>Fogponics Controller</h1>
+                        <h1>(Web Based)</h1>
                     </div>
-                    <div>
-                        <div class="flex justify-center my-10">
-                            <h1 class="font-bold text-lg">{{ Auth::user()->email}}</h1>
+                    <div class="text-md">
+                        <div class="flex justify-center my-5">
+                            <h1 class="font-bold text-md">{{ Auth::user()->email}}</h1>
                         </div>
                         <nav class="relative">
-                            <ul class="text-xl h-[10em] flex flex-col ">
-                                <li>
-                                    <a href="{{route('dashboard')}}" class="my-4 flex">
-                                        <img src="{{asset("Images/dashboard.png")}}" alt="" class="h-[40px] w-[40px] mr-7">
-                                        <h1 class="text-xl">Dashboard</h1>
+                            <ul class=" h-[10em] flex flex-col items-center">
+                                <li class="my-3">
+                                    <a href="{{route('dashboard')}}">
+                                        <h1>Dashboard</h1>
                                     </a>
                                 </li>
-                                <li class="my-4">
-                                    <a href="{{route('equipments')}}" class="flex items-center">
-                                        <img src="{{asset("Images/equipment.png")}}" alt="" class="h-[40px] w-[40px] mr-7">
+                                <li class="my-3">
+                                    <a href="{{route('equipments')}}">
                                         <h1>Equipments</h1>
                                     </a>
                                 </li>
-                                <li class="my-4">
-                                    <a href="{{route("controller")}}" class="flex items-center" id="controller-parent">
-                                        <img src="{{asset("Images/controller.png")}}" alt="" class="h-[40px] w-[40px] mr-7">
+                                <li class="my-3">
+                                    <a href="{{route("controller")}}" id="controller-parent">
                                         <h1>Controller</h1>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="{{route("changePass")}}" class="my-4 flex items-center">
-                                        <img src="{{asset("Images/password.png")}}" alt="" class="h-[45px] w-[45px] mr-6">
+                                <li class="my-3">
+                                    <a href="{{route("changePass")}}">
                                         <h1>Change Password</h1>
                                     </a>
                                 </li>
                                 <form action="logout" method="POST">
                                     @csrf
                                     <button>
-                                        <li class="my-4 flex items-center">
-                                            <img src="{{asset("Images/logout.png")}}" alt="" class="h-[30px] w-[30px] mr-10">
+                                        <li class="my-3 flex items-center">
                                             <h1 class>Logout</h1>
                                         </li>
                                     </button>
@@ -73,19 +69,20 @@
                 <button onclick="sidebarBehavior()">
                     <img src="{{asset('Images/menu.svg')}}" alt="" class="ml-5 h-[30px]  w-[30px]">
                 </button>
-                <h1 class="text-4xl ml-5">Dashboard</h1>
+                <h1 class="text-xl ml-5">Dashboard</h1>
             </div>
-            <div class="flex items-center my-5 flex-col">
-                <div class="bg-white h-[30em] w-[90em] rounded-lg">
-                    <h1></h1>
+            <div class="flex items-center flex-col p-6 w-full">
+                <div class="bg-white h-[22em] w-full rounded-lg flex justify-center">
+                    <canvas id="myChart"></canvas>
                 </div>
-                <div class="flex justify-between mt-5 w-[90em]">
-                    <div class="bg-white w-[44em] h-[30em] rounded-lg">
-
+                <div class="flex justify-between mt-5 w-full">
+                    <div class="bg-white w-[20em] h-[20em] rounded-lg flex justify-center items-center">
+                        <canvas id="waterChart"></canvas>
                     </div>
-                    <div class="bg-white w-[44em] h-[30em] rounded-lg">
-
+                    <div class="bg-white w-[34em] h-[20em] rounded-lg flex justify-center items-center">
+                        <canvas id="waterChart"></canvas>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -95,6 +92,82 @@
 </html>
 <script type="text/javascript">
     var sidebarMenu = document.getElementById("sidebarNav");
+    const sensorChart = document.getElementById("myChart");
+    new Chart(sensorChart, {
+        type: 'line',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            },
+            {
+                label: '# of Votees',
+                data: [9, 14, 2, 4, 2, 1],
+                borderWidth: 1
+            }],
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    var data = {
+        labels: [0],
+        datasets: [{
+            label: 'Water Temp 1',
+            data: [0],
+            lineTension: .5
+        },{
+            label: 'Water Temp 2',
+            data: [0],
+            lineTension: .5
+        },{
+            label: 'Water Temp 3',
+            data: [0],
+            lineTension: .5
+        },{
+            label: 'Water Temp 4',
+            data: [0],
+            lineTension: .5
+        }]
+    };
+
+    var config = {
+        type: 'line',
+        data: data
+    }
+
+
+    var waterChart = new Chart(
+        document.getElementById("waterChart"), 
+        config
+        )
+
+    window.setInterval(displayData, 2000)
+
+    function displayData() {
+        var date = new Date()
+        var value1 = Math.floor(Math.random() * 1000)
+        var value2 = Math.floor(Math.random() * 1000)
+        var value3 = Math.floor(Math.random() * 1000)
+        var value4 = Math.floor(Math.random() * 1000)
+        date = date.getHours() + ":" + date.getMinutes() + " : " + date.getSeconds()
+        data.labels.push(date)
+        data.datasets[0].data.push(value1)
+        data.datasets[1].data.push(value2)
+        data.datasets[2].data.push(value3)
+        data.datasets[3].data.push(value4)
+        waterChart.update()
+    }
+
+    
     const sidebarBehavior = () => {
         if (sidebarMenu.style.display == "none") {
             sidebarMenu.style.display = "block"
