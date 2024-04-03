@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="bg-gray-200 font-Poppins">
@@ -122,10 +121,10 @@
 </html>
 <script type="text/javascript">
     var sidebarMenu = document.getElementById("sidebarNav");
-    const waterTemp = document.getElementById("water-temp")
-    const lightIntensity = document.getElementById("light-intensity")
-    const humidity = document.getElementById("humidity")
-    const waterLevel = document.getElementById("water-level")
+    const waterTemp = document.getElementById("water-temp").getContext('2d')
+    const lightIntensity = document.getElementById("light-intensity").getContext('2d')
+    const humidity = document.getElementById("humidity").getContext('2d')
+    const waterLevel = document.getElementById("water-level").getContext('2d')
 
 
     const sidebarBehavior = () => {
@@ -136,6 +135,22 @@
         }
     }
     
+    const data = {
+        labels: [],
+        datasets: [{
+            label: "Water Temperature",
+            data: [10],
+            lineTension: .5
+        }]
+    }
+
+    const config = {
+        type: 'line',
+        data: data
+    }
+
+    new Chart(waterTemp, config)
+
     
 
 
