@@ -13,7 +13,7 @@
     <div class="flex">
         <!-- Navigation Sidebar-->
         <div id="sidebarNav">
-            <div class="w-[17em] h-full relative bg-white flex justify-center left-0">
+            <div class="w-[20em] h-full relative bg-white flex justify-center left-0">
                 <div class="h-[22em] flex flex-col justify-between fixed mt-14">
                     <div class="flex justify-center">
                         <img src="{{asset('Images/clsuLogo.jpg')}}" alt="" class="h-[5em] w-[5em]">
@@ -65,11 +65,11 @@
         <!--End of Sidebar-->
         <!--Content Section-->
         <div class="w-full">
-            <div class="w-full h-20 bg-white flex items-center">
+            <div class="w-full h-24 bg-white flex items-center">
                 <button onclick="sidebarBehavior()">
                     <img src="{{asset('Images/menu.svg')}}" alt="" class="ml-5 h-[30px]  w-[30px]">
                 </button>
-                <h1 class="text-2xl ml-3">Dashboard</h1>
+                <h1 class="text-xl ml-5">Dashboard</h1>
             </div>
             <div class="flex items-center flex-col p-6 w-full">
                 <div class="bg-white h-[22em] w-full rounded-lg flex justify-center">
@@ -93,80 +93,6 @@
 <script type="text/javascript">
     var sidebarMenu = document.getElementById("sidebarNav");
     const sensorChart = document.getElementById("myChart");
-    new Chart(sensorChart, {
-        type: 'line',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                borderWidth: 1
-            },
-            {
-                label: '# of Votees',
-                data: [9, 14, 2, 4, 2, 1],
-                borderWidth: 1
-            }],
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-    var data = {
-        labels: [0],
-        datasets: [{
-            label: 'Water Temp 1',
-            data: [0],
-            lineTension: .5
-        },{
-            label: 'Water Temp 2',
-            data: [0],
-            lineTension: .5
-        },{
-            label: 'Water Temp 3',
-            data: [0],
-            lineTension: .5
-        },{
-            label: 'Water Temp 4',
-            data: [0],
-            lineTension: .5
-        }]
-    };
-
-    var config = {
-        type: 'line',
-        data: data
-    }
-
-
-    var waterChart = new Chart(
-        document.getElementById("waterChart"), 
-        config
-        )
-
-    window.setInterval(displayData, 2000)
-
-    function displayData() {
-        var date = new Date()
-        var value1 = Math.floor(Math.random() * 1000)
-        var value2 = Math.floor(Math.random() * 1000)
-        var value3 = Math.floor(Math.random() * 1000)
-        var value4 = Math.floor(Math.random() * 1000)
-        date = date.getHours() + ":" + date.getMinutes() + " : " + date.getSeconds()
-        data.labels.push(date)
-        data.datasets[0].data.push(value1)
-        data.datasets[1].data.push(value2)
-        data.datasets[2].data.push(value3)
-        data.datasets[3].data.push(value4)
-        waterChart.update()
-    }
-
     
     const sidebarBehavior = () => {
         if (sidebarMenu.style.display == "none") {

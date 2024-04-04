@@ -12,7 +12,7 @@
     <div class="flex">
         <!-- Navigation Sidebar-->
         <div id="sidebarNav">
-            <div class="w-[17em] h-screen relative bg-white flex justify-center left-0">
+            <div class="w-[20em] h-screen relative bg-white flex justify-center left-0">
                 <div class="h-[22em] flex flex-col justify-between fixed mt-14">
                     <div class="flex justify-center">
                         <img src="{{asset('Images/clsuLogo.jpg')}}" alt="" class="h-[5em] w-[5em]">
@@ -64,11 +64,11 @@
         <!--End of Sidebar-->
         <!--Content Section-->
         <div class="w-full">
-            <div class="w-full h-20 bg-white flex items-center">
+            <div class="w-full h-24 bg-white flex items-center">
                 <button onclick="sidebarBehavior()">
                     <img src="{{asset('Images/menu.svg')}}" alt="" class="ml-5 h-[30px] w-[30px]">
                 </button>
-                <h1 class="text-2xl ml-3">Change Password</h1>
+                <h1 class="text-4xl ml-5">Change Password</h1>
             </div>
             @if(session('data'))
             {{dd(Session::all())}}
