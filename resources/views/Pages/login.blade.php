@@ -38,7 +38,7 @@
                 </div>
                 <div class="relative mt-4">
                     <input type="password" name="password" placeholder="Password" class="peer placeholder-transparent outline-blue-300 border-2 rounded-lg text-lg h-12 w-[17em] px-4 mt-2" required>
-                    <label for="password" class="absolute text-base text-center  pointer-events-none -top-1 text-gray-400 left-4 w-24 bg-white
+                    <label for="password" class="absolute text-base text-center  pointer-events-none top-1 text-gray-400 left-4 w-24 bg-white
                     peer-placeholder-shown:text-lg
                     transition-all
                     peer-placeholder-shown:top-5

@@ -12,8 +12,8 @@ class CoreController extends Controller
     public function updatePassword(Request $request) {
         $validatePassword = $request->validate([
             "oldPassword" => ["required"],
-            "newPassword" => ["required"],
-            "confirmPassword" => ["required"],
+            "newPassword" => ["required", "min:8"],
+            "confirmPassword" => ["required", "min:8"],
         ]);
     
         if(!Hash::check($validatePassword['oldPassword'], auth()->user()->password)) {
@@ -52,5 +52,13 @@ class CoreController extends Controller
         ]);
 
         dd($validatedData);
+    }
+
+    public function scheduledMode(Request $request) {
+
+    }
+
+    public function manualMode(Request $request) {
+        
     }
 }

@@ -68,7 +68,7 @@
         <!--End of Sidebar-->
         <!--Content Section-->
         <div class="w-full">
-            <div class="w-full h-20 bg-white flex items-center justify-between px-5">
+            <div class="w-full h-16 bg-white flex items-center justify-between px-5">
                 <span class="flex">
                     <button onclick="sidebarBehavior()">
                         <img src="{{asset('Images/menu.svg')}}" alt="" class="h-[30px]  w-[30px]">
