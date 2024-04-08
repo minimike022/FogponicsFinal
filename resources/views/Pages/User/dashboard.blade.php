@@ -7,13 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-streaming"></script>
 </head>
 
 <body class="bg-gray-200 font-Poppins">
     <div class="flex">
         <!-- Navigation Sidebar-->
         <div id="sidebarNav">
-            <div class="w-[17em] h-full relative bg-white flex justify-center left-0">
+            <div class="w-[17em] h-screen relative bg-white flex justify-center left-0">
                 <div class="h-[22em] flex flex-col justify-between fixed mt-14">
                     <div class="flex justify-center">
                         <img src="{{asset('Images/clsuLogo.jpg')}}" alt="" class="h-[5em] w-[5em]">
@@ -71,18 +74,37 @@
                 </button>
                 <h1 class="text-2xl ml-3">Dashboard</h1>
             </div>
-            <div class="flex items-center flex-col p-6 w-full">
-                <div class="bg-white h-[22em] w-full rounded-lg flex justify-center">
-                    <canvas id="myChart"></canvas>
+            <div class="flex flex-col p-5">
+                <div class="flex justify-between w-full">
+                    <div class="w-[13em] h-[9em] bg-white rounded-lg text-center p-7">
+                        <div class="h-full flex justify-center items-center text-xl font-bold">
+                            <h1>Automatic</h1>
+                        </div>
+                    </div>
+                    <div class="w-[45em] h-[9em] bg-white rounded-lg">
+                        <form action="" class="flex justify-around items-center h-full">
+                        <span class="flex">
+                            <h1>Grow Light</h1>
+                            <input type="checkbox">
+                        </span>
+                        <span class="flex">
+                            <h1>Humidifier</h1>
+                            <input type="checkbox">
+                        </span>
+                        <span class="flex">
+                            <h1>Exhaust Fan</h1>
+                            <input type="checkbox">
+                        </span>
+                        </form>
+                    </div>
                 </div>
-                <div class="flex justify-between mt-5 w-full">
-                    <div class="bg-white w-[20em] h-[20em] rounded-lg flex justify-center items-center">
-                        <canvas id="waterChart"></canvas>
+                <div class="mt-5 flex justify-between">
+                    <div class="w-[40em] h-[18em] bg-white rounded-lg">
+                        <h1>Logs</h1>
                     </div>
-                    <div class="bg-white w-[34em] h-[20em] rounded-lg flex justify-center items-center">
-                        <canvas id="waterChart"></canvas>
+                    <div class="w-[18em] h-[18em] bg-white rounded-lg">
+                        <h1>Notifications</h1>
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -92,7 +114,6 @@
 </html>
 <script type="text/javascript">
     var sidebarMenu = document.getElementById("sidebarNav");
-    const sensorChart = document.getElementById("myChart");
     
     const sidebarBehavior = () => {
         if (sidebarMenu.style.display == "none") {

@@ -10,7 +10,7 @@
 
 <body class="bg-body-bg bg-center bg-cover flex justify-end font-Poppins">
 
-    <div class="h-screen w-[30em] bg-white">
+    <div class="h-screen w-[25em] bg-white">
 
         <div class="flex flex-col items-center py-10">
             <img src="{{asset('Images/clsuLogo.jpg')}}" class="h-[7em] w-[7em]" alt="Logo">
