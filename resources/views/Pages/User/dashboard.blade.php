@@ -15,95 +15,80 @@
 <body class="bg-gray-200 font-Poppins">
     <div class="flex">
         <!-- Navigation Sidebar-->
-        <div id="sidebarNav">
-            <div class="w-[17em] h-screen relative bg-white flex justify-center left-0">
-                <div class="h-[22em] flex flex-col justify-between fixed mt-14">
-                    <div class="flex justify-center">
-                        <img src="{{asset('Images/clsuLogo.jpg')}}" alt="" class="h-[5em] w-[5em]">
-                    </div>
-                    <div class="text-lg font-semibold mt-5 flex justify-center items-center flex-col">
-                        <h1>Fogponics Controller</h1>
-                        <h1>(Web Based)</h1>
-                    </div>
-                    <div class="text-md">
-                        <div class="flex justify-center my-5">
-                            <h1 class="font-bold text-md">{{ Auth::user()->email}}</h1>
-                        </div>
-                        <nav class="relative">
-                            <ul class=" h-[10em] flex flex-col items-center">
-                                <li class="my-3">
-                                    <a href="{{route('dashboard')}}">
-                                        <h1>Dashboard</h1>
-                                    </a>
-                                </li>
-                                <li class="my-3">
-                                    <a href="{{route('equipments')}}">
-                                        <h1>Equipments</h1>
-                                    </a>
-                                </li>
-                                <li class="my-3">
-                                    <a href="{{route("controller")}}" id="controller-parent">
-                                        <h1>Controller</h1>
-                                    </a>
-                                </li>
-                                <li class="my-3">
-                                    <a href="{{route("changePass")}}">
-                                        <h1>Change Password</h1>
-                                    </a>
-                                </li>
-                                <form action="logout" method="POST">
-                                    @csrf
-                                    <button>
-                                        <li class="my-3 flex items-center">
-                                            <h1 class>Logout</h1>
-                                        </li>
-                                    </button>
-                                </form>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
+        <div>
+            <div id="sidebarNav-cont" class="w-[17em] h-screen relative bg-white flex justify-center left-0">
+                @livewire('sidebar-navigation')
             </div>
         </div>
         <!--End of Sidebar-->
         <!--Content Section-->
         <div class="w-full">
             <div class="w-full h-16 bg-white flex items-center px-5">
-                <button onclick="sidebarBehavior()">
-                    <img src="{{asset('Images/menu.svg')}}" alt="" class="h-[30px]  w-[30px]">
-                </button>
                 <h1 class="text-2xl ml-3">Dashboard</h1>
             </div>
             <div class="flex flex-col p-5">
                 <div class="flex justify-between w-full">
-                    <div class="w-[13em] h-[9em] bg-white rounded-lg text-center p-7">
-                        <div class="h-full flex justify-center items-center text-xl font-bold">
-                            <h1>Automatic</h1>
+                    <div class="w-[13em] h-[9em] bg-white rounded-lg text-center py-2">
+                        <h1 class="font-semibold">Mode Status:</h1>
+                        <h1 id="modeIndicator" class="mt-6 font-bold text-2xl">Automatic</h1>
+                    </div>
+                    <div class="w-[45em] h-[9em] bg-white rounded-lg flex justify-between font-semibold p-5">
+                        <div class="flex flex-col items-center">
+                            <h1>Light Intensity</h1>
+                            <h2 class="mt-4">Data</h2>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <h1>Humidity</h1>
+                            <h2 class="mt-4">Data</h2>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <h1>Water Temperature</h1>
+                            <h2 class="mt-4">Data</h2>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <h1>Water Level</h1>
+                            <h2 class="mt-4">Data</h2>
                         </div>
                     </div>
-                    <div class="w-[45em] h-[9em] bg-white rounded-lg">
-                        <form action="" class="flex justify-around items-center h-full">
-                        <span class="flex">
-                            <h1>Grow Light</h1>
-                            <input type="checkbox">
-                        </span>
-                        <span class="flex">
-                            <h1>Humidifier</h1>
-                            <input type="checkbox">
-                        </span>
-                        <span class="flex">
-                            <h1>Exhaust Fan</h1>
-                            <input type="checkbox">
-                        </span>
-                        </form>
-                    </div>
                 </div>
+                <!-- Log Status -->
                 <div class="mt-5 flex justify-between">
-                    <div class="w-[40em] h-[18em] bg-white rounded-lg">
-                        <h1>Logs</h1>
+                    <div class="w-[40em] h-[18em] bg-white rounded-lg px-5">
+                        <h1 class="mt-4 text-xl font-bold">Logs</h1>
+                        <div class="h-[14em] bg-gray-200 mt-2 rounded-md">
+                        </div>
                     </div>
-                    <div class="w-[18em] h-[18em] bg-white rounded-lg">
-                        <h1>Notifications</h1>
+                    <!-- Actuators Status -->
+                    <div class="w-[18em] h-[18em] px-4 py-4 flex flex-col bg-white rounded-lg">
+                        <h1 class="text-xl font-bold">Device Controller</h1>
+                        <span class="flex justify-between my-4 px-4">
+                            <h1 class="font-bold">Exhaust Fan</h1>
+                            <label for="check-ef" class="bg-gray-200 items-center relative w-14 h-6 rounded-full">
+                                <input type="checkbox" id="check-ef" class="sr-only peer">
+                                <span class="w-5 h-5 absolute bg-gray-700 rounded-full
+                                left-1 top-[.14em] peer-checked:bg-green-400 peer-checked:left-8
+                                transition-all"></span>
+                            </label>
+                        </span>
+                        <span class="flex justify-between my-4 px-4">
+                            <h1 class="font-bold">Grow Light</h1>
+                            <label for="check-gl" class="bg-gray-200 items-center relative w-14 h-6 rounded-full">
+                                <input type="checkbox" id="check-gl" class="sr-only peer">
+                                <span class="w-5 h-5 absolute bg-gray-700 rounded-full
+                                left-1 top-[.14em] peer-checked:bg-green-400 peer-checked:left-8
+                                transition-all"></span>
+                            </label>
+                        </span>
+                        <span class="flex justify-between my-4 px-4">
+                            <h1 class="font-bold">Fogger</h1>
+                            <label for="check-f" class="bg-gray-200 items-center relative w-14 h-6 rounded-full">
+                                <input type="checkbox" id="check-f" class="sr-only peer">
+                                <span class="w-5 h-5 absolute bg-gray-700 rounded-full
+                                left-1 top-[.14em] peer-checked:bg-white peer-checked:left-8
+                                transition-all"></span>
+                            </label>
+                        </span>
+        
                     </div>
                 </div>
             </div>
@@ -113,13 +98,6 @@
 
 </html>
 <script type="text/javascript">
-    var sidebarMenu = document.getElementById("sidebarNav");
-    
-    const sidebarBehavior = () => {
-        if (sidebarMenu.style.display == "none") {
-            sidebarMenu.style.display = "block"
-        } else {
-            sidebarMenu.style.display = "none"
-        }
-    }
+    const modeIndicator = document.getElementById("modeIndicator")
+    modeIndicator.textContent = "Manual"
 </script>
