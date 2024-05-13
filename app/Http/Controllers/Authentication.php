@@ -18,8 +18,10 @@ class Authentication extends Controller
                 return redirect("/dashboard");
             }
         }else {
-            return back()->withErrors(['msg' => 'Username or password is incorrect. Please try again!']);
+            return back()->with(['msg' => 'Username or password is incorrect. Please try again!']);
         }
     }
+
+    
 
 }

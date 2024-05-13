@@ -9,19 +9,16 @@
 </head>
 
 <body class="bg-body-bg bg-center bg-cover flex justify-end font-Poppins">
-
     <div class="h-screen w-[25em] bg-white">
-
         <div class="flex flex-col items-center py-10">
             <img src="{{asset('Images/clsuLogo.jpg')}}" class="h-[7em] w-[7em]" alt="Logo">
             <span class="text-center my-6 ">
                 <h1 class="text-2xl font-medium">ALFC | Portal</h1>
             </span>
-            @if(Session::has('errors'))
+            @if(Session::has('msg'))
             <span class="w-[19em] h-[3em] rounded-md text-red-500 bg-red-300 flex items-center mb-2">
                 <h1 class="text-sm ml-2">
-                    
-                    {{Session('errors')->first()}}
+                    {{Session('msg')}}
                 </h1>
             </span>
             @endif
@@ -38,7 +35,7 @@
                 </div>
                 <div class="relative mt-4">
                     <input type="password" name="password" placeholder="Password" class="peer placeholder-transparent outline-blue-300 border-2 rounded-lg text-lg h-12 w-[17em] px-4 mt-2" required>
-                    <label for="password" class="absolute text-base text-center  pointer-events-none top-1 text-gray-400 left-4 w-24 bg-white
+                    <label for="password" class="absolute text-base text-center  pointer-events-none -top-1 text-gray-400 left-4 w-24 bg-white
                     peer-placeholder-shown:text-lg
                     transition-all
                     peer-placeholder-shown:top-5

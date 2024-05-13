@@ -4,6 +4,7 @@ use App\Http\Controllers\Authentication;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Navigation;
 use App\Http\Controllers\CoreController;
+use App\Http\Controllers\UserAccounts;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,13 +22,15 @@ Route::get('/', function () {
 });
 
 Route::post('/authenticate', [Authentication::class, 'Authenticate']);
+Route::post('/user/createAccount', [UserAccounts::class, "createAccount"]);
 
-Route::middleware('isUser')->group(function () {
-    Route::post('/updatePassword', [CoreController::class, "updatePassword"]);
+Route::middleware('isUser') ->group(function() {
     Route::get('/dashboard', [Navigation::class, "dashboard"])->name('dashboard');
     Route::get('/equipments', [Navigation::class, "equipments"])->name('equipments');
     Route::get('/controller', [Navigation::class, "controller"])->name('controller');
-    Route::post('/controller/automaticMode', [CoreController::class, 'automaticMode'])->name('automaticMode');
-    Route::get('/changePass', [Navigation::class, "changepassword"])->name('changePass');
-    Route::post('/logout', [Navigation::class, "logout"])->name('logout');
+    Route::get('/account/changePass', [Navigation::class, "changepassword"])->name('changePass'); 
+});
+Route::middleware('isUser')->group(function () {
+    Route::post('/user/updatePassword', [UserAccounts::class, "updatePassword"]);
+    Route::post('/user/logout', [Navigation::class, "logout"])->name('logout');
 });
