@@ -20,6 +20,7 @@ class UserAccounts extends Controller
         
         User::create($validate_accounts);
 
+        return redirect()->back()->with('msg', 'Account Created');
     }
     public function updatePassword(Request $request) {
         $validate_password = $request->validate([
@@ -50,6 +51,5 @@ class UserAccounts extends Controller
                 }
             }
         }
-        
     }
 }

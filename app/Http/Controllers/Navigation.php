@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Auth;
 
 class Navigation extends Controller
 {
-    public function equipments() {
-        return view('Pages.equipments');
+    public function sensors() {
+        return view('Pages.sensors');
     }
 
     public function dashboard() {

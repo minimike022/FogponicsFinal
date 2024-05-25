@@ -19,7 +19,7 @@
         <!--End of Sidebar-->
         <!--Content Section-->
         <div class="p-10">
-            <h1 class="text-3xl font-bold text-green-500">Change Password</h1>
+            <h1 class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-green-700 drop-shadow-md">Change Password</h1>
             @if(Session::has('error'))
             {{dd(session('error'))}}
             @endif

@@ -3,7 +3,6 @@
 use App\Http\Controllers\Authentication;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Navigation;
-use App\Http\Controllers\CoreController;
 use App\Http\Controllers\UserAccounts;
 
 /*
@@ -26,7 +25,7 @@ Route::post('/user/createAccount', [UserAccounts::class, "createAccount"]);
 
 Route::middleware('isUser') ->group(function() {
     Route::get('/dashboard', [Navigation::class, "dashboard"])->name('dashboard');
-    Route::get('/equipments', [Navigation::class, "equipments"])->name('equipments');
+    Route::get('/sensors', [Navigation::class, "sensors"])->name('sensors');
     Route::get('/controller', [Navigation::class, "controller"])->name('controller');
     Route::get('/account/changePass', [Navigation::class, "changepassword"])->name('changePass'); 
 });
