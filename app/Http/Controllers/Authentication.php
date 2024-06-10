@@ -14,9 +14,7 @@ class Authentication extends Controller
         ]);
 
         if(Auth::attempt($validatedData)) {
-            if(Auth::user()->role == "user") {
-                return redirect("/dashboard");
-            }
+            return redirect("/dashboard");
         }else {
             return back()->with(['msg' => 'Username or password is incorrect. Please try again!']);
         }

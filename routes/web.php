@@ -23,13 +23,18 @@ Route::get('/', function () {
 Route::post('/authenticate', [Authentication::class, 'Authenticate']);
 Route::post('/user/createAccount', [UserAccounts::class, "createAccount"]);
 
-Route::middleware('isUser') ->group(function() {
+Route::middleware('auth')->group(function() {
     Route::get('/dashboard', [Navigation::class, "dashboard"])->name('dashboard');
     Route::get('/sensors', [Navigation::class, "sensors"])->name('sensors');
     Route::get('/controller', [Navigation::class, "controller"])->name('controller');
     Route::get('/account/changePass', [Navigation::class, "changepassword"])->name('changePass'); 
+    
 });
-Route::middleware('isUser')->group(function () {
+Route::middleware('auth')->group(function () {
     Route::post('/user/updatePassword', [UserAccounts::class, "updatePassword"]);
     Route::post('/user/logout', [Navigation::class, "logout"])->name('logout');
+});
+
+Route::middleware('isAdmin')->group(function() {
+    Route::get('/users', [UserAccounts::class, "fetchAccounts"])->name('users'); 
 });

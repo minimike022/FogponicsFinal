@@ -27,6 +27,9 @@ class MqttListener extends Command
     public function handle()
     {
         $mqtt = MQTT::connection();
+        if ($mqtt) {
+            echo sprintf('connected!');
+        }
         $mqtt->subscribe('devices', function(string $topic, string $message) {
             echo sprintf('Received message on topic [%s]: %s',$topic, $message);
         });

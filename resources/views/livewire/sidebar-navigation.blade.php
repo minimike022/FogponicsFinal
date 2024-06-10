@@ -1,4 +1,4 @@
-<div class="h-[22em] flex flex-col justify-between sticky top-10 mt-10">
+<div class="h-[22em] flex flex-col justify-between top-10 mt-10">
     <div class="flex justify-center">
         <img src="{{asset('Images/clsuLogo.jpg')}}" alt="" class="h-[5em] w-[5em]">
     </div>
@@ -29,6 +29,14 @@
                         <h1 class="font-bold text-gray-300 bg-clip-text hover:text-transparent hover:bg-gradient-to-r from-green-500 to-green-700">Change Password</h1>
                     </a>
                 </li>
+                @if (Auth::user()->role == "admin")
+                <li class="my-3">
+                    <a href="{{route("users")}}">
+                        <h1 class="font-bold text-gray-300 bg-clip-text hover:text-transparent hover:bg-gradient-to-r from-green-500 to-green-700">Users</h1>
+                    </a>
+                </li>
+                @endif
+                
                 <form action="/user/logout" method="POST">
                     @csrf
                     <button>

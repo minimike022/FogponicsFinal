@@ -11,8 +11,8 @@
 <body class=" font-Poppins">
     <div class="flex">
         <!-- Navigation Sidebar-->
-        <div class="drop-shadow-md">
-            <div id="sidebarNav-cont" class="w-[17em] h-screen relative bg-white flex justify-center left-0">
+        <div class="drop-shadow-md h-[100%]">
+            <div id="sidebarNav-cont" class="w-[17em] h-[100dvh] relative bg-white flex justify-center left-0">
                 @livewire('sidebar-navigation')
             </div>
         </div>

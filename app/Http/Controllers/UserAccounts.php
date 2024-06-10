@@ -22,6 +22,12 @@ class UserAccounts extends Controller
 
         return redirect()->back()->with('msg', 'Account Created');
     }
+
+    public function fetchAccounts() {
+        $user_accounts = User::all();
+
+        return view('Pages.users', compact('user_accounts'));
+    }
     public function updatePassword(Request $request) {
         $validate_password = $request->validate([
             "old_password" => ["required"],
